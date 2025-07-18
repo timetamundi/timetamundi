@@ -32,3 +32,12 @@ Tipos de mudanças
 ### Adicionado
 
 - Suporte à fornecedores e clientes PJ no cadastro de vendas
+
+## [1.0.2]
+
+### Adicionado
+
+- Tabelas de vendas de todos os produtos
+- Calendário de controle de eventos
+- Scripts para migrações do agente PRO
+- Incremento no recurso de notificações via WhatsApp

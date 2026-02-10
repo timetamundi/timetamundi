@@ -13,7 +13,8 @@ new (function () {
 
     // Does your browser doesn't support private methods?
     #privateMethod() {
-      return true;
+      // check the the browser supports string.at()
+      return 'hello'.at(4);
     }
 
     supportsOptionalChaining() {
@@ -23,5 +24,17 @@ new (function () {
       return optionalChaining?.support;
     }
   }
-  window.supportsOptionalChaining = new BrowserCompatibilityTester().supportsOptionalChaining();
+
+  function supportsPromiseWithResolvers() {
+    const iframe = document.createElement('iframe');
+    document.firstElementChild.append(iframe);
+    const useLegacyPdfViewer = 'withResolvers' in iframe.contentWindow['Promise'];
+    iframe.parentElement.removeChild(iframe);
+
+    return useLegacyPdfViewer;
+  }
+
+  const supportsOptionalChaining = new BrowserCompatibilityTester().supportsOptionalChaining();
+  const supportModernPromises = supportsPromiseWithResolvers();
+  window.ngxExtendedPdfViewerCanRunModernJSCode = supportsOptionalChaining && supportModernPromises;
 })();
